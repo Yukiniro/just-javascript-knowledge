@@ -3,16 +3,12 @@ import { defineConfig } from 'rspress/config';
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
-  title: 'Just Javascript Knowledge',
+  title: 'Just JavaScript Knowledge',
   description: 'Just JavaScript 的翻译和总结',
-  icon: '/rspress-icon.png',
-  logo: {
-    light: '/rspress-light-logo.png',
-    dark: '/rspress-dark-logo.png',
-  },
+  logoText: 'JJS Knowledge',
   themeConfig: {
     socialLinks: [
-      { icon: 'github', mode: 'link', content: 'https://github.com/web-infra-dev/rspress' },
+      { icon: 'github', mode: 'link', content: 'https://github.com/Yukiniro/just-javascript-knowledge' },
     ],
   },
 });
