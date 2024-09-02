@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读
-      link: /guide/
+      link: /guide/mental-model
     - theme: alt
       text: GitHub
       link: https://github.com/Yukiniro/just-javascript-knowledge
