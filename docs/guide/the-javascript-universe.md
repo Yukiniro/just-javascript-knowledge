@@ -72,4 +72,32 @@ console.log(x => x * 2);
 
 ### 值的类型
 
+只有 9 种值的类型，但是我们如何知道一个特定值的类型？
+
+![telescope.png](/telescope.png)
+
+如果我们想要检查一个值的类型，我们可以使用 `typeof` 操作符。以下是一些你可以在浏览器控制面板尝试的示例：
+
+```js
+console.log(typeof 2); // "number"
+console.log(typeof "hello"); // "string"
+console.log(typeof undefined); // "undefined"
+```
+
+严格来说，`typeof` 的括号不是必须的。例如，`typeof 2` 和 `typeof(2)` 是等价的。然而，为了避免歧义有时候括号是必须的。下面的示例中就有一个会因为我们省略 `typeof` 后的括号而中断。尝试猜测是哪一个：
+
+```js
+console.log(typeof({})); // "object"
+console.log(typeof([])); // "object"
+console.log(typeof(x => x * 2)); // "function"
+```
+
+你可以在浏览器的控制面板验证你的猜测。
+
+![using-typeof.webm](/using-typeof.webm)
+
+你可能有问题。很好。如果你提出问题，我们的 JavaScript 宇宙可能会回答！当然，前提是你知道如何提问。
+
+## 表达式
+
 
