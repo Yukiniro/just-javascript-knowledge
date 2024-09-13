@@ -1,0 +1,39 @@
+# 遇见原始值
+
+到目前位置，我们一致在我们的星球表面观察我们的 JavaScript 宇宙。我们已经熟悉了在远处填充我们的宇宙的值，但是在这个模块，我们将改变这一点。我们将跳上宇宙飞船去探索，并介绍 JavaScript 宇宙的每个值。
+
+花时间详细观察每个值看起来没有必要，但是你只有在清除地看到两个“不同”的苹果时，才能说“有两个苹果”。区分不同的值是理解 JavaScript 的相等性关键 -- 这将是我们的下一个模块的主题。
+
+我们的宇宙飞船将引导我们穿越 JavaScript 的“天体图”遇到不同的值。我们首先会遇到原始值：布尔值，数字，字符串等。稍后，我们将遇到对象和函数。请把这当作是一次观光旅游。
+
+![celestialspheres-v2.png](/celestialspheres-v2.png)
+
+## Undefined
+
+我们将从 Undefined 类型开始我们的旅程。这是一个非常直接的起点，因为**这个类型只有一个值 -- `undefined`**。
+
+```js
+console.log(typeof(undefined)); // "undefined"
+```
+
+![undefined-revised](/undefined-revised.png)
+
+它被称为 undefined，所以你可能会认为它不存在 -- 但它是一个值，而且是一个非常真实的值！就像黑洞一样，`undefined` 脾气暴躁，并且常常会带来玛法。例如，从它身上读取一个属性会破坏你的程序：
+
+```js
+let person = undefined;
+console.log(person.mood); // TypeError!
+```
+
+哦，好吧。幸运的是，我们的整个 JavaScript 宇宙只有一个 `undefined`。你可能会想：它到底为什么存在？在 JavaScript 中，它表示 _无意_ 中缺失值的概念。
+
+你可以在你的代码中通过编写 `undefined` 来使用它 -- 就像是编写 `2` 或者 `hello`。然而，`undefined` 也常常“自然发生”。它会出现在 JavaScript 不知道你想要什么值的情况下。例如，如果你忘记给一个变量赋值，它将只想 `undefined`。JavaScript
+
+```js
+let bandersnatch;
+console.log(bandersnatch); // undefined
+```
+
+![undefined-example](/undefined-example.png)
+
+
