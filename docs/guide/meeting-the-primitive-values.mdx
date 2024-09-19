@@ -78,5 +78,53 @@ console.log(typeof(null)); // "object" (a lie!)
 
 :::
 
-在实际使用中，`null` 用于 _故意_ 缺失的值。为什么同时有 `null` 和 `undefined` 呢？
+在实际使用中，`null` 用于 _故意_ 缺失的值。为什么同时有 `null` 和 `undefined` 呢？这可以帮助你区分编码错误（可能结果是 `undefined`）和有效的数据缺失（可能结果是 `null`）。然而，这仅仅是个约定，JavaScript 不会强制使用这个用法。有些人会尽可能都避免它们。
 
+我不怪他们。
+
+## Booleans
+
+![boolean-revised.png](/boolean-revised.png)
+
+接下来的旅程中，我们将遇见布尔值！就像是白天和黑夜或者开和关一样，只有两个值：`true` 和 `false`。
+
+```js
+console.log(typeof(true)); // "boolean"
+console.log(typeof(false)); // "boolean"
+```
+
+我们可以使用它们进行逻辑运算：
+
+```js
+let isSad = true;
+let isHappy = !isSad; // The opposite
+let isFeeling = isSad || isHappy; // Is at least one of them true?
+let isConfusing = isSad && isHappy; // Are both true?
+```
+
+## Numbers
+
+到目前为止，我们已经结束了四个值：`null`，`undefined`，`true` 和 `false`。JavaScript
+
+抓紧时间，我们还需要在心智模型中添加 8 万亿、437 万亿、736 万亿、8740 亿、4.54 亿、812 万、624 个值！
+
+当然，我说的是数字：
+
+```js
+console.log(typeof(28)); // "number"
+console.log(typeof(3.14)); // "number"
+console.log(typeof(-140)); // "number"
+```
+
+乍一看，数字好像并不起眼，但是让我们更好地了解它们吧！
+
+### 计算机数学
+
+JavaScript 数字和常规的数学数字的学位不完全相同。下面是一个演示片段：
+
+```js
+console.log(0.1 + 0.2 === 0.3); // false
+console.log(0.1 + 0.2 === 0.30000000000000004); // true
+```
+
+这可能看起来非常令人惊讶！和通常的想法不同，这并不意味着 JavaScript 数字是错误的。这种行为在不同的编程语言中很常见。它甚至有一个名字：浮点数学。
