@@ -36,4 +36,47 @@ console.log(bandersnatch); // undefined
 
 ![undefined-example](/undefined-example.png)
 
+然后你可以将其指向其他的值，或者你想的话也可以再次指向 `undefined`。
+
+不要太在意它的名字。`undefined` 很容易被视为某个变量状态，例如，“这个变量还没有定义”。但是这样思考的话会具有误导性！实际上，如果你真的读取一个没有被定义（或者在 `let` 声明之前）的变量，你会得到一个错误。
+
+```js
+console.log(jabberwocky); // ReferenceError!
+let jabberwocky;
+```
+
+这与 undefined 无关。
+
+实际上，`undefined` 是一个常规的原始值，就像是 `2` 或者 `"hello"`。
+
+小心处理。
+
+## Null
+
+![null-revised.png](/null-revised.png)
+
+我们旅行的下一站是 Null。你可以认为 `null` 是 `undefined` 的姐妹；**这个类型只有一个值 -- `null`**。它的行为很像 undefined。例如，当你试图访问它的属性时会抛出错误。
+
+```js
+let mimsy = null;
+console.log(mimsy.mood); // TypeError!
+```
+
+![null-example.png](/null-example.png)
+
+:::warning{title=趣闻}
+
+`null` 是其自身类型的唯一值。**然而，`null` 也是一个骗子**。由于 JavaScript 的一个 [bug](https://2ality.com/2013/10/typeof-null.html)，它伪装成了一个对象。
+
+```js
+console.log(typeof(null)); // "object" (a lie!)
+```
+
+你也许会认为这意味着 `null` 是一个对象。不要陷入这个陷阱！`null` 是一个原始值，并且它的行为跟对象完全不同。
+
+不幸的是，`typeof(null)` 是一个我们不得不忍受的历史性错误。
+
+:::
+
+在实际使用中，`null` 用于 _故意_ 缺失的值。为什么同时有 `null` 和 `undefined` 呢？
 
