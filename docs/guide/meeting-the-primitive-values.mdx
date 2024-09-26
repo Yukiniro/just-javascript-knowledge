@@ -1,0 +1,290 @@
+# 遇见原始值
+
+到目前位置，我们一致在我们的星球表面观察我们的 JavaScript 宇宙。我们已经熟悉了在远处填充我们的宇宙的值，但是在这个模块，我们将改变这一点。我们将跳上宇宙飞船去探索，并介绍 JavaScript 宇宙的每个值。
+
+花时间详细观察每个值看起来没有必要，但是你只有在清除地看到两个“不同”的苹果时，才能说“有两个苹果”。区分不同的值是理解 JavaScript 的相等性关键 -- 这将是我们的下一个模块的主题。
+
+我们的宇宙飞船将引导我们穿越 JavaScript 的“天体图”遇到不同的值。我们首先会遇到原始值：布尔值，数字，字符串等。稍后，我们将遇到对象和函数。请把这当作是一次观光旅游。
+
+![celestialspheres-v2.png](/celestialspheres-v2.png)
+
+## Undefined
+
+我们将从 Undefined 类型开始我们的旅程。这是一个非常直接的起点，因为**这个类型只有一个值 -- `undefined`**。
+
+```js
+console.log(typeof(undefined)); // "undefined"
+```
+
+![undefined-revised](/undefined-revised.png)
+
+它被称为 undefined，所以你可能会认为它不存在 -- 但它是一个值，而且是一个非常真实的值！就像黑洞一样，`undefined` 脾气暴躁，并且常常会带来玛法。例如，从它身上读取一个属性会破坏你的程序：
+
+```js
+let person = undefined;
+console.log(person.mood); // TypeError!
+```
+
+哦，好吧。幸运的是，我们的整个 JavaScript 宇宙只有一个 `undefined`。你可能会想：它到底为什么存在？在 JavaScript 中，它表示 _无意_ 中缺失值的概念。
+
+你可以在你的代码中通过编写 `undefined` 来使用它 -- 就像是编写 `2` 或者 `hello`。然而，`undefined` 也常常“自然发生”。它会出现在 JavaScript 不知道你想要什么值的情况下。例如，如果你忘记给一个变量赋值，它将只想 `undefined`。JavaScript
+
+```js
+let bandersnatch;
+console.log(bandersnatch); // undefined
+```
+
+![undefined-example](/undefined-example.png)
+
+然后你可以将其指向其他的值，或者你想的话也可以再次指向 `undefined`。
+
+不要太在意它的名字。`undefined` 很容易被视为某个变量状态，例如，“这个变量还没有定义”。但是这样思考的话会具有误导性！实际上，如果你真的读取一个没有被定义（或者在 `let` 声明之前）的变量，你会得到一个错误。
+
+```js
+console.log(jabberwocky); // ReferenceError!
+let jabberwocky;
+```
+
+这与 undefined 无关。
+
+实际上，`undefined` 是一个常规的原始值，就像是 `2` 或者 `"hello"`。
+
+小心处理。
+
+## Null
+
+![null-revised.png](/null-revised.png)
+
+我们旅行的下一站是 Null。你可以认为 `null` 是 `undefined` 的姐妹；**这个类型只有一个值 -- `null`**。它的行为很像 undefined。例如，当你试图访问它的属性时会抛出错误。
+
+```js
+let mimsy = null;
+console.log(mimsy.mood); // TypeError!
+```
+
+![null-example.png](/null-example.png)
+
+:::warning{title=趣闻}
+
+`null` 是其自身类型的唯一值。**然而，`null` 也是一个骗子**。由于 JavaScript 的一个 [bug](https://2ality.com/2013/10/typeof-null.html)，它伪装成了一个对象。
+
+```js
+console.log(typeof(null)); // "object" (a lie!)
+```
+
+你也许会认为这意味着 `null` 是一个对象。不要陷入这个陷阱！`null` 是一个原始值，并且它的行为跟对象完全不同。
+
+不幸的是，`typeof(null)` 是一个我们不得不忍受的历史性错误。
+
+:::
+
+在实际使用中，`null` 用于 _故意_ 缺失的值。为什么同时有 `null` 和 `undefined` 呢？这可以帮助你区分编码错误（可能结果是 `undefined`）和有效的数据缺失（可能结果是 `null`）。然而，这仅仅是个约定，JavaScript 不会强制使用这个用法。有些人会尽可能都避免它们。
+
+我不怪他们。
+
+## 布尔值
+
+![boolean-revised.png](/boolean-revised.png)
+
+接下来的旅程中，我们将遇见布尔值！就像是白天和黑夜或者开和关一样，只有两个值：`true` 和 `false`。
+
+```js
+console.log(typeof(true)); // "boolean"
+console.log(typeof(false)); // "boolean"
+```
+
+我们可以使用它们进行逻辑运算：
+
+```js
+let isSad = true;
+let isHappy = !isSad; // The opposite
+let isFeeling = isSad || isHappy; // Is at least one of them true?
+let isConfusing = isSad && isHappy; // Are both true?
+```
+
+## 数字
+
+到目前为止，我们已经结束了四个值：`null`，`undefined`，`true` 和 `false`。JavaScript
+
+抓紧时间，我们还需要在心智模型中添加 8 万亿、437 万亿、736 万亿、8740 亿、4.54 亿、812 万、624 个值！
+
+当然，我说的是数字：
+
+```js
+console.log(typeof(28)); // "number"
+console.log(typeof(3.14)); // "number"
+console.log(typeof(-140)); // "number"
+```
+
+乍一看，数字好像并不起眼，但是让我们更好地了解它们吧！
+
+### 计算机数学
+
+JavaScript 数字和常规的数学数字的学位不完全相同。下面是一个演示片段：
+
+```js
+console.log(0.1 + 0.2 === 0.3); // false
+console.log(0.1 + 0.2 === 0.30000000000000004); // true
+```
+
+这可能看起来非常令人惊讶！和通常的想法不同，这并不意味着 JavaScript 数字是错误的。这种行为在不同的编程语言中很常见。它甚至有一个名字：浮点数学。
+
+你看，JavaScript 并没有实现我们在真实生活中使用的那种数学。浮点数学是“计算机数学”。不要太担心这个名字或者它的工作原理。只有很少的人知道它所有的微妙之处，这就是重点！它在实际使用中运行得很好，大部分时间你都不用考虑它。不过，我们还是快速了解下它的不同之处。
+
+### 颜色和数字
+
+你曾经是否使用扫描仪将物理照片或者文档转换为数字格式？这个类比可以帮助我们理解 JavaScript 数字。
+
+扫描仪通常可以区分 1600 万种颜色。如果你用一个红色蜡笔画一幅画并扫描它，扫描后的图像也应该是红色的 -- 准确来说是扫描仪从 1600 万种颜色中选择最接近该红色的颜色。所以如果你有两个颜色很接近的红色蜡笔，扫描仪可能会误以为它们是相同的颜色！
+
+_我们可以说扫描仪使用的是精度有限的颜色_。
+
+浮点数学与之类似。在实际数学中有无数的数字。但是在浮点数学中，**它们只有 18 千万亿个数字**。所以当我们在代码中书写数字或者使用它们进行计算时，JavaScript 选择它所知道的最接近的数字 -- 就像我们的扫描仪处理颜色一样。
+
+_换句话说，JavaScript 使用精度有限的数字_。
+
+我们可以想象所有的 JavaScript 数字都位于一个数轴上。我们越是接近 `0`，数字的精度就越高，并且它们彼此“坐”得很近。
+
+<video src="/number_line.webm" autoPlay loop muted controls />
+
+这是因为在我们的程序中，相对较小的数字出现得越频繁，我们通常希望它们足够精确。
+
+当我们从 `0` 开始向任意方向移动时，我们开始失去精度。在某些时候，即使是两个最接近的 JavaScript 数字也保持比 `1` 更远的距离：
+
+```js
+console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+console.log(Number.MAX_SAFE_INTEGER + 1); // 9007199254740992
+console.log(Number.MAX_SAFE_INTEGER + 2); // 9007199254740992 (again!)
+console.log(Number.MAX_SAFE_INTEGER + 3); // 9007199254740994
+console.log(Number.MAX_SAFE_INTEGER + 4); // 9007199254740996
+console.log(Number.MAX_SAFE_INTEGER + 5); // 9007199254740996
+```
+
+幸运的是，`Number.MIN_SAFE_INTEGER` 和 `Number.MAX_SAFE_INTEGER` 之间的任何整数都是精确的。这就是为什么 `10 + 20 === 30`。JavaScript
+
+但是当我们写 `0.1` 或者 `0.2` 时，我们不会得到准确的 `0.1` 和 `0.2`。我们会得到 JavaScript 中最接近的数字。它们几乎完全相同，但是可能有微小的差异。正是这些差异的叠加，导致 `0.1 + 0.2` 不会得到 `0.3` 这样的准确的数字。
+
+如果这仍然令人困惑，请不要担心！你可以[了解更多关于浮点数学的信息](https://floating-point-gui.de/formats/fp/)，但是你已经比我开始编写本指南时了解得更多！除非你从事金融应用程序相关的工作，否则你可能完全不需要担心这一点。
+
+## 特殊数字
+
+值得注意的是，浮点数字包含了一些 _特殊数字_。你可能偶尔遇到 `NaN`，`Infinity`, `-Infinity` 和 `-0`。它们之所以存在，是因为有时候你可能会执行 `1 / 0` 这样的操作，JavaScript 需要以某种方式表示它们的结果。浮点数学标准制定了它们的工作原理以及使用它们时会发生什么。
+
+以下是代码中特殊数字可能出现的方式：
+
+```js
+let scale = 0;
+let a  = 1 / scale; // Infinity
+let b = 0 / scale; // NaN
+let c = -a; // -Infinity
+let d = 1 / c; // -0;
+```
+
+在这些特殊数字中，`NaN` 特别有趣。`NaN` 是 `0 / 0` 和其他一些无效数学的结果，代表“不是数字”。
+
+你可能会对它为什么声称是一个数字感到困惑：
+
+```js
+console.log(typeof(NaN)); // "number"
+```
+
+但是，这里没有诡计。从 JavaScript 的角度看，`NaN` 是一个数字。他不是 null，undefined，字符串或者其他的类型。但是在浮点数学中，该术语的名称是[“not a number”](https://en.wikipedia.org/wiki/NaN)。所以它是一个数字。他被称为“not a number”是因为它表示无效的结果。
+
+使用这些特殊数字编写代码并不常见。但是，它们可能会因为编码错误而出现。所以知道它们的存在是件好事。
+
+## BigInts
+
+[bigints-v2.png](/bigints-v2.png)
+
+如果数字扩展了我们的 JavaScript 宇宙，那么我们旅程的下一站，BigInts，将真正让我们忙于探索。实际上，我们可以永远探索它们！
+
+常规数字无法精确地表示大整数，因此 BigInts [填补了这一空白](https://v8.dev/features/bigint)(字面意思)。我们的宇宙中有多少大整数呢？规范说它们有任意精度。这意味着**在我们的 JavaScript 宇宙中，有无数的 BitInts -- 对应着数学中的每个整数**。JavaScript
+
+如果这听起来奇怪，请考虑下你已经对数学中无数整数的想法感到满意。（如果你是，请稍等片刻！）那么， 从“数学宇宙”到“JavaScript 宇宙”的跨越就不大了。
+
+（从那里，我们可以直接进入[百事可乐](https://www.goldennumber.net/wp-content/uploads/pepsi-arnell-021109.pdf)。）
+
+你可以看到任意精度的概念在这里进行了说明：
+
+```js
+let alot = 9007199254740991n; // n at the end makes it a BigInt!
+console.log(alot + 1n); // 9007199254740992n
+console.log(alot + 2n); // 9007199254740993n
+console.log(alot + 3n); // 9007199254740994n
+console.log(alot + 4n); // 9007199254740995n
+console.log(alot + 5n); // 9007199254740996n
+```
+
+四舍五入没什么好笑的！BigInt 非常适合精度特别重要的金融计算。
+
+但是请记住没有什么是免费的。_真正_巨大数字的操作可能需要消耗时间和资源 -- 我们不能把所有可能的 BigInts 都放在计算机内存。如果我们这样尝试了，它会在某个时候崩溃或者冻结。但是从概念上讲，我们可以永远游览我们的 JavaScript 宇宙并且永不访问每个 BigInt。
+
+BigInts 是最近才添加到 JavaScript 的，所以你还不会看到它们的广泛使用，如果你使用的是比较旧的浏览器，它们将无法工作。
+
+## 字符串
+
+[strings-v2.png](/strings-v2.png)
+
+我们的下一站是字符串，它在 JavaScript 中便是文本。目前有三种编写字符串的方式（单引号，双引号和反引号），但是它们引用相同的概念。这三种方式会返回相同的字符串值：
+
+```js
+console.log(typeof("こんにちは")); // "string"
+console.log(typeof('こんにちは')); // "string"
+console.log(typeof(`こんにちは`)); // "string"
+```
+
+空字符串也是字符串：
+
+```js
+console.log(typeof("")); // "string"
+```
+
+### 字符串不是对象
+
+所有的字符串都有一些内置属性。
+
+```js
+let cat = 'CHeshire';
+console.log(cat.length); // 8
+console.log(cat[0]); // "C"
+console.log(cat[1]); // "H"
+```
+
+这并不意味着字符串就是对象！字符串的属性是特殊的，并且和对象的属性行为不一致。例如，你不能设置任何内容给 `cat[0]`。字符串是原始值，并且所有的原始值都是不可变的。
+
+### 每个可想象的字符串的值
+
+**在我们的宇宙中，每个可以想象的字符串都有一个不同的值**。是的，是的，这包括你祖母的娘家姓，你十年前以别名发表的同人小说，以及尚未写好的《黑客帝国 5》剧本。
+
+当然，所有可能的字符串都不可能真正放入计算机的内存芯片中。但是，每个字符串都可以放入你的脑海。我们的 JavaScript 宇宙是面向人类的模型，不是面向计算机的。
+
+这可能会引发一个问题。这段代码能创建一个字符串吗？
+
+```js
+// Try it in your console
+let answer = prompt('Enter your name');
+console.log(answer); // ?
+```
+
+还是说这仅仅是 _召唤_ 一个已经存在于我们宇宙中的字符串。
+
+这个问题的答案取决于我们是“从外部”还是“从内部”学习 JavaScript。
+
+在我们的心智模型之外，答案取决于具体的实现。无论一个字符串是表示为单个内存块、多个内存块还是像[绳子](https://en.wikipedia.org/wiki/Rope_(data_structure))这样的数据结果，都取决于 JavaScript 引擎。
+
+但是正如我们在[从内部学习](/studying-from-the-inside)讨论的那样，我们已经同意我们要像生活在 JavaScript 宇宙中一样讨论它。我们不会做出无法在宇宙内部通过运行代码来通过验证的申明。
+
+字符串是“存在”还是“创建”不是我们可以从代码中测试的问题。在我们的心智模型中，这个问题没有任何意义。我们无法设置一个实验来说明字符串在我们的 JavaScript 宇宙中是“被创建”还是“被召唤”。
+
+为了让我们的心智模型保持简单，我们将会说**所有可以想象的字符串值一开始就存在 -- 每个不同的字符串都有一个值**。JavaScript
+
+## Symbols (符号)
+
+我们已经探索了 JavaScript 宇宙中相当多的领域，但是在我们旅程的第一部分还有一个（快速）站点：Symbols。
+
+```js
+let alohomra = Symbol();
+console.log(typeof(alohomra)); // "symbol"
+```
+
+知道 Symbols 的存在很重要，但是如果不深入研究对象和属性就很难解释它们的角色和行为。Symbols 的作用和门钥匙相似：它们允许你将某些信息隐藏在对象中，并控制代码的哪些部分可以访问它。它们相当少见，所以我们的这次宇宙之旅中，我们将跳过它们。对不起，Symbols!
